@@ -14,9 +14,10 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="applications" element={<Applications />} />
             <Route path="analytics" element={<Analytics />} />
-            {/* Fallback to Dashboard */}
-            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </ApplicationProvider>
