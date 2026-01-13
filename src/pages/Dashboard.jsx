@@ -4,11 +4,11 @@ import { Briefcase, CheckCircle, XCircle, Clock, TrendingUp } from 'lucide-react
 import { Link } from 'react-router-dom';
 
 const StatCard = ({ title, value, icon: Icon, color, trend }) => (
-    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+    <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200">
         <div className="flex items-start justify-between">
             <div>
-                <p className="text-slate-500 text-sm font-medium">{title}</p>
-                <h3 className="text-3xl font-bold text-slate-900 mt-2">{value}</h3>
+                <p className="text-slate-500 text-xs sm:text-sm font-medium">{title}</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1 sm:mt-2">{value}</h3>
             </div>
             <div className={`p-3 rounded-lg ${color}`}>
                 <Icon size={24} />
@@ -28,13 +28,13 @@ const Dashboard = () => {
     const recentApps = applications.slice(0, 5);
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
             <div>
-                <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
-                <p className="text-slate-500 mt-1">Welcome back, keep applying!</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">Dashboard</h1>
+                <p className="text-slate-500 mt-1 text-sm sm:text-base">Welcome back, keep applying!</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                 <StatCard
                     title="Total Applications"
                     value={stats.total}

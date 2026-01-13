@@ -47,17 +47,17 @@ const Analytics = () => {
     }
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
             <div>
-                <h1 className="text-3xl font-bold text-slate-800">Analytics</h1>
-                <p className="text-slate-500 mt-1">Insights into your application process</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">Analytics</h1>
+                <p className="text-slate-500 mt-1 text-sm sm:text-base">Insights into your application process</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                 {/* Status Distribution */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h2 className="text-lg font-bold text-slate-800 mb-6">Application Status</h2>
-                    <div className="h-80">
+                <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-4 sm:mb-6">Application Status</h2>
+                    <div className="h-64 sm:h-80">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
                                 <Pie
@@ -82,9 +82,9 @@ const Analytics = () => {
                 </div>
 
                 {/* Platform Distribution */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h2 className="text-lg font-bold text-slate-800 mb-6">Applications by Platform</h2>
-                    <div className="h-80">
+                <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-4 sm:mb-6">Applications by Platform</h2>
+                    <div className="h-64 sm:h-80">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={platformData}

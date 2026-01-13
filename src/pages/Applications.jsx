@@ -51,17 +51,17 @@ const Applications = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-800">Applications</h1>
-                    <p className="text-slate-500 mt-1">Track and manage your internship applications</p>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">Applications</h1>
+                    <p className="text-slate-500 mt-1 text-sm sm:text-base">Track and manage your internship applications</p>
                 </div>
                 <button
                     onClick={openAddModal}
-                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
+                    className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm w-full sm:w-auto"
                 >
                     <Plus size={20} />
-                    Add Application
+                    <span>Add Application</span>
                 </button>
             </div>
 
@@ -96,65 +96,75 @@ const Applications = () => {
                     </div>
                 ) : (
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left text-sm">
+                        {/* Table */}
+                        <table className="w-full min-w-[640px]">
                             <thead className="bg-slate-50 border-b border-slate-200">
                                 <tr>
-                                    <th className="px-6 py-3 font-semibold text-slate-700">Company & Role</th>
-                                    <th className="px-6 py-3 font-semibold text-slate-700">Status</th>
-                                    <th className="px-6 py-3 font-semibold text-slate-700">Date Applied</th>
-                                    <th className="px-6 py-3 font-semibold text-slate-700">Platform</th>
-                                    <th className="px-6 py-3 font-semibold text-slate-700">Location</th>
-                                    <th className="px-6 py-3 font-semibold text-slate-700 text-right">Actions</th>
+                                    <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Company</th>
+                                    <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Role</th>
+                                    <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Platform</th>
+                                    <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Status</th>
+                                    <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Date</th>
+                                    <th className="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-semibold text-slate-600 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100">
-                                {filteredApplications.map((app) => (
-                                    <tr key={app.id} className="hover:bg-slate-50/50 transition-colors">
-                                        <td className="px-6 py-4">
-                                            <div>
-                                                <div className="font-semibold text-slate-900">{app.company}</div>
-                                                <div className="text-slate-500">{app.role}</div>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <StatusBadge status={app.status} />
-                                        </td>
-                                        <td className="px-6 py-4 text-slate-600 flex items-center gap-2">
-                                            <Calendar size={16} className="text-slate-400" />
-                                            {app.dateApplied}
-                                        </td>
-                                        <td className="px-6 py-4 text-slate-600">
-                                            <div className="flex items-center gap-2">
-                                                <ExternalLink size={16} className="text-slate-400" />
-                                                {app.platform}
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-slate-600">
-                                            <div className="flex items-center gap-2">
-                                                <MapPin size={16} className="text-slate-400" />
-                                                {app.location || 'Remote'}
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-right">
-                                            <div className="flex justify-end gap-2">
-                                                <button
-                                                    onClick={() => openEditModal(app)}
-                                                    className="text-slate-400 hover:text-blue-600 transition-colors p-2 hover:bg-blue-50 rounded-lg"
-                                                    title="Edit Application"
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                </button>
-                                                <button
-                                                    onClick={() => deleteApplication(app.id)}
-                                                    className="text-slate-400 hover:text-red-600 transition-colors p-2 hover:bg-red-50 rounded-lg"
-                                                    title="Delete Application"
-                                                >
-                                                    <Trash2 size={18} />
-                                                </button>
+                                {filteredApplications.length > 0 ? (
+                                    filteredApplications.map(app => (
+                                        <tr key={app.id} className="hover:bg-slate-50/50 transition-colors cursor-pointer" onClick={() => openEditModal(app)}>
+                                            <td className="px-4 sm:px-6 py-3 sm:py-4">
+                                                <div className="font-semibold text-slate-900 text-sm">{app.company}</div>
+                                                {app.location && (
+                                                    <div className="flex items-center gap-1 mt-1 text-xs text-slate-500">
+                                                        <MapPin size={12} />
+                                                        {app.location}
+                                                    </div>
+                                                )}
+                                            </td>
+                                            <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-slate-700">{app.role}</td>
+                                            <td className="px-4 sm:px-6 py-3 sm:py-4">
+                                                <div className="flex items-center gap-1.5 text-xs text-slate-600">
+                                                    <ExternalLink size={14} />
+                                                    {app.platform || 'N/A'}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 sm:px-6 py-3 sm:py-4">
+                                                <StatusBadge status={app.status} />
+                                            </td>
+                                            <td className="px-4 sm:px-6 py-3 sm:py-4">
+                                                <div className="flex items-center gap-1.5 text-xs text-slate-600">
+                                                    <Calendar size={14} />
+                                                    {app.dateApplied}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 sm:px-6 py-3 sm:py-4">
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            deleteApplication(app.id);
+                                                        }}
+                                                        className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+                                                        title="Delete"
+                                                    >
+                                                        <Trash2 size={16} />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="6" className="px-6 py-12 text-center">
+                                            <div className="flex flex-col items-center gap-2 text-slate-400">
+                                                <Briefcase size={48} className="opacity-30" />
+                                                <p className="text-sm">
+                                                    {searchTerm ? 'No applications match your search.' : 'No applications yet. Click "Add Application" to get started!'}
+                                                </p>
                                             </div>
                                         </td>
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
                         </table>
                     </div>
