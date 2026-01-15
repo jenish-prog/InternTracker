@@ -50,23 +50,31 @@ const Sidebar = () => {
             </aside>
 
             {/* Mobile Bottom Navigation (WhatsApp Style) */}
-            <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 px-2 pb-safe">
+            <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 pb-safe">
                 <div className="flex justify-around items-center h-16">
                     {navItems.map((item) => (
                         <NavLink
                             key={item.path}
                             to={item.path}
                             className={({ isActive }) =>
-                                `flex flex-col items-center justify-center w-full h-full space-y-1 ${isActive
-                                    ? 'text-blue-600'
-                                    : 'text-slate-500'
+                                `flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${isActive
+                                    ? 'text-green-600'
+                                    : 'text-slate-500 hover:text-slate-700'
                                 }`
                             }
                         >
-                            {item.icon}
-                            <span className="text-[10px] font-medium">{item.label}</span>
-                            {/* Active Indicator Line (Optional, WhatsApp-like) */}
-                            {/* <div className={`h-0.5 w-12 rounded-full absolute top-0 ${isActive ? 'bg-blue-600' : 'bg-transparent'}`} /> */}
+                            <div className="relative">
+                                {item.icon}
+                                {/* Notification badge example - can be made dynamic later */}
+                                {/* <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                </span> */}
+                            </div>
+                            <span className="text-[12px] font-medium">{item.label}</span>
+
+                            {/* Active Indicator Line (Optional, strictly WhatsApp doesn't have this, but adds nice touch) */}
+                            {/* <div className={`h-0.5 w-12 rounded-full absolute top-0 ${isActive ? 'bg-green-600' : 'bg-transparent'}`} /> */}
                         </NavLink>
                     ))}
                 </div>
