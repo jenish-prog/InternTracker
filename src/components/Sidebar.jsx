@@ -19,8 +19,8 @@ const Sidebar = () => {
             <aside className="hidden md:flex w-64 bg-slate-900 text-slate-100 h-screen flex-col fixed left-0 top-0 z-50">
                 <div className="p-6 border-b border-slate-700">
                     <div className="flex items-center gap-3">
-                        <img src="/logo-suite.png" alt="Logo" className="w-8 h-8 object-contain" />
-                        <span className="font-bold text-lg">InternTracker</span>
+                        <img src="/logo.png" alt="Logo" className="w-16 h-16 object-contain" />
+                        <span className="font-bold text-2xl tracking-tight leading-none">InternTracker</span>
                     </div>
                 </div>
 
@@ -48,6 +48,14 @@ const Sidebar = () => {
                     </div>
                 </div>
             </aside>
+
+            {/* Mobile Top Bar */}
+            <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-slate-200 z-50 flex items-center px-4">
+                <div className="flex items-center gap-3">
+                    <img src="/logo.png" alt="Logo" className="w-16 h-16 object-contain" />
+                    <span className="font-bold text-2xl tracking-tight text-slate-900 leading-none">InternTracker</span>
+                </div>
+            </div>
 
             {/* Mobile Bottom Navigation (WhatsApp Style) */}
             <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 pb-safe">

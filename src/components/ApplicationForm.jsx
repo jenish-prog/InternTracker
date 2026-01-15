@@ -55,8 +55,8 @@ const ApplicationForm = ({ isOpen, onClose, onSubmit, initialData = null }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-xl shadow-xl w-full max-w-md p-6 relative">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4">
+            <div className="bg-white rounded-xl shadow-xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
                 <button
                     onClick={onClose}
                     className="absolute right-4 top-4 text-slate-400 hover:text-slate-600"
