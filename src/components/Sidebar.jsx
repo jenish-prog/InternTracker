@@ -15,35 +15,13 @@ const Sidebar = () => {
 
     return (
         <>
-            {/* Mobile Menu Button */}
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-slate-900 text-white rounded-lg shadow-lg"
-                aria-label="Toggle menu"
-            >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-
-            {/* Overlay for mobile */}
-            {isOpen && (
-                <div
-                    className="lg:hidden fixed inset-0 bg-black/50 z-40"
-                    onClick={closeSidebar}
-                />
-            )}
-
-            {/* Sidebar */}
-            <aside className={`
-                w-64 bg-slate-900 text-slate-100 min-h-screen flex flex-col
-                fixed left-0 top-0 z-50
-                transform transition-transform duration-300 ease-in-out
-                ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-            `}>
+            {/* Desktop Sidebar */}
+            <aside className="hidden md:flex w-64 bg-slate-900 text-slate-100 h-screen flex-col fixed left-0 top-0 z-50">
                 <div className="p-6 border-b border-slate-700">
-                    <h1 className="text-xl font-bold flex items-center gap-2">
-                        <FileText className="text-blue-400" />
-                        <span>InternTracker</span>
-                    </h1>
+                    <div className="flex items-center gap-3">
+                        <img src="/logo-suite.png" alt="Logo" className="w-8 h-8 object-contain" />
+                        <span className="font-bold text-lg">InternTracker</span>
+                    </div>
                 </div>
 
                 <nav className="flex-1 p-4 space-y-2">
@@ -51,7 +29,6 @@ const Sidebar = () => {
                         <NavLink
                             key={item.path}
                             to={item.path}
-                            onClick={closeSidebar}
                             className={({ isActive }) =>
                                 `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive
                                     ? 'bg-blue-600 text-white'
@@ -71,6 +48,29 @@ const Sidebar = () => {
                     </div>
                 </div>
             </aside>
+
+            {/* Mobile Bottom Navigation (WhatsApp Style) */}
+            <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 px-2 pb-safe">
+                <div className="flex justify-around items-center h-16">
+                    {navItems.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            className={({ isActive }) =>
+                                `flex flex-col items-center justify-center w-full h-full space-y-1 ${isActive
+                                    ? 'text-blue-600'
+                                    : 'text-slate-500'
+                                }`
+                            }
+                        >
+                            {item.icon}
+                            <span className="text-[10px] font-medium">{item.label}</span>
+                            {/* Active Indicator Line (Optional, WhatsApp-like) */}
+                            {/* <div className={`h-0.5 w-12 rounded-full absolute top-0 ${isActive ? 'bg-blue-600' : 'bg-transparent'}`} /> */}
+                        </NavLink>
+                    ))}
+                </div>
+            </nav>
         </>
     );
 };

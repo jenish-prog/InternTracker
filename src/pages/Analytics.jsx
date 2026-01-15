@@ -57,7 +57,7 @@ const Analytics = () => {
                 {/* Status Distribution */}
                 <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200">
                     <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-4 sm:mb-6">Application Status</h2>
-                    <div className="h-64 sm:h-80">
+                    <div className="h-64 sm:h-80 w-full min-w-0">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
                                 <Pie
@@ -84,7 +84,7 @@ const Analytics = () => {
                 {/* Platform Distribution */}
                 <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200">
                     <h2 className="text-base sm:text-lg font-bold text-slate-800 mb-4 sm:mb-6">Applications by Platform</h2>
-                    <div className="h-64 sm:h-80">
+                    <div className="h-64 sm:h-80 w-full min-w-0">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={platformData}
