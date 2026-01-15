@@ -41,7 +41,14 @@ export const ApplicationProvider = ({ children }) => {
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
-            setApplications(data || []);
+
+            // Normalize data: Supabase returns lowercase column names
+            const normalizedData = (data || []).map(app => ({
+                ...app,
+                dateApplied: app.dateapplied || app.dateApplied // Handle both cases just in case
+            }));
+
+            setApplications(normalizedData);
         } catch (error) {
             console.error('Error fetching applications:', error.message);
         } finally {
@@ -66,7 +73,13 @@ export const ApplicationProvider = ({ children }) => {
                 .select();
 
             if (error) throw error;
-            setApplications(prev => [data[0], ...prev]);
+
+            const newApp = {
+                ...data[0],
+                dateApplied: data[0].dateapplied
+            };
+
+            setApplications(prev => [newApp, ...prev]);
             return { data, error: null };
         } catch (error) {
             console.error('Error adding application:', error.message);
