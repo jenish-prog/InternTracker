@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Search, Trash2, MapPin, Calendar, ExternalLink } from 'lucide-react';
+import { Plus, Search, Trash2, MapPin, Calendar, ExternalLink, Pencil } from 'lucide-react';
 import { useApplications } from '../context/ApplicationContext';
 import ApplicationForm from '../components/ApplicationForm';
 
@@ -111,7 +111,7 @@ const Applications = () => {
                             <tbody className="divide-y divide-slate-100">
                                 {filteredApplications.length > 0 ? (
                                     filteredApplications.map(app => (
-                                        <tr key={app.id} className="hover:bg-slate-50/50 transition-colors cursor-pointer" onClick={() => openEditModal(app)}>
+                                        <tr key={app.id} className="hover:bg-slate-50/50 transition-colors">
                                             <td className="px-4 sm:px-6 py-3 sm:py-4">
                                                 <div className="font-semibold text-slate-900 text-sm">{app.company}</div>
                                                 {app.location && (
@@ -125,7 +125,19 @@ const Applications = () => {
                                             <td className="px-4 sm:px-6 py-3 sm:py-4">
                                                 <div className="flex items-center gap-1.5 text-xs text-slate-600">
                                                     <ExternalLink size={14} />
-                                                    {app.platform || 'N/A'}
+                                                    {app.link ? (
+                                                        <a
+                                                            href={app.link.startsWith('http') ? app.link : `https://${app.link}`}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="text-blue-600 hover:underline cursor-pointer"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            {app.platform || 'N/A'}
+                                                        </a>
+                                                    ) : (
+                                                        <span>{app.platform || 'N/A'}</span>
+                                                    )}
                                                 </div>
                                             </td>
                                             <td className="px-4 sm:px-6 py-3 sm:py-4">
@@ -139,6 +151,16 @@ const Applications = () => {
                                             </td>
                                             <td className="px-4 sm:px-6 py-3 sm:py-4">
                                                 <div className="flex items-center justify-center gap-2">
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            openEditModal(app);
+                                                        }}
+                                                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                                                        title="Edit"
+                                                    >
+                                                        <Pencil size={16} />
+                                                    </button>
                                                     <button
                                                         onClick={(e) => {
                                                             e.stopPropagation();

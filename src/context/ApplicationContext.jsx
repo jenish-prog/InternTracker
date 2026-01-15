@@ -66,6 +66,7 @@ export const ApplicationProvider = ({ children }) => {
                     status: app.status,
                     dateapplied: app.dateApplied, // Match Supabase column name
                     platform: app.platform,
+                    link: app.link,
                     location: app.location,
                     notes: app.notes,
                     user_id: userId
@@ -89,9 +90,21 @@ export const ApplicationProvider = ({ children }) => {
 
     const updateApplication = async (id, updatedApp) => {
         try {
+            // Normalize update data to match Supabase column names
+            const dbData = {
+                company: updatedApp.company,
+                role: updatedApp.role,
+                status: updatedApp.status,
+                dateapplied: updatedApp.dateApplied, // Map to snake_case
+                platform: updatedApp.platform,
+                link: updatedApp.link, // Ensure link is included
+                location: updatedApp.location,
+                notes: updatedApp.notes
+            };
+
             const { error } = await supabase
                 .from('applications')
-                .update(updatedApp)
+                .update(dbData)
                 .eq('id', id);
 
             if (error) throw error;
