@@ -24,9 +24,9 @@ dist-ssr
 *.sw?
 
 # Environment
-.env
-.env.local
-.env.*
+# .env
+# .env.local
+# .env.*
 
 # InternTracker specific (if needed, but likely we want to track source)
 # Block nested git roots if any
