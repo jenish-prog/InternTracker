@@ -38,7 +38,6 @@ export const ApplicationProvider = ({ children }) => {
             const { data, error } = await supabase
                 .from('applications')
                 .select('*')
-                .eq('user_id', currentUserId)
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
